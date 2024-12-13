@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ language.name }} Learning</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+    <!-- Header Navbar -->
+    <header>
+        <div class="logo">My Learning Site</div>
+        <nav>
+            <a href="/about">About</a>
+            <a href="/features">Features</a>
+            <a href="/contact">Contact</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+
+    <!-- Sub Navbar for Language Selector (Scrollable List) -->
+<div class="sub-navbar">
+    {% for language in language_list %}
+    <div class="language-item">
+        <a href="/{{ language.slug }}/">{{ language.name }}</a>
+    </div>
+    {% endfor %}
+</div>
+
+    <!-- Main Content Layout -->
+    <div class="main-container">
+        <!-- Sidebar with Topics and Subtopics -->
+        <div class="slider-container">
+            <div class="slider-content">
+                <h1>{{ language.name }} Topics</h1>
+                {% for topic in topics %}
+                <div class="topic-item">
+                    <h3>{{ topic.title }}</h3>
+                    <div class="subtopics">
+                        {% for subtopic in topic.subtopics.all %}
+                        <div class="subtopic-item">
+                            <a href="#" class="subtopic-link" data-subtopic-id="{{ subtopic.id }}">
+                                {{ subtopic.title }}
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Content Display Section -->
+        <div class="content-container" id="content-container">
+            {% if content %}
+            <h2>{{ content.title }}</h2>
+            <p>{{ content.description }}</p>
+            <div>{{ content.english_content }}</div>
+            <div>{{ content.hinglish_content }}</div>
+            {% else %}
+            <p>Select a subtopic to view content.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
