@@ -1,8 +1,25 @@
 from django.contrib import admin
-from .models import *
+from .models import Language, Topic, SubTopic, Content
 
-# Register your models here.
+# Register Language model without customization
 admin.site.register(Language)
-admin.site.register(Topic)
-admin.site.register(SubTopic)
-admin.site.register(Content)
+
+# Custom admin class for Topic
+class TopicAdmin(admin.ModelAdmin):  # Use PascalCase for class names
+    model = Topic
+    list_display = ('language', 'title', 'order')  # Specify fields to display
+
+# Custom admin class for SubTopic
+class SubTopicAdmin(admin.ModelAdmin):  # Use PascalCase for class names
+    model = SubTopic
+    list_display = ('topic', 'title', 'order')  # Specify fields to display
+
+# Custom admin class for Content
+class ContentAdmin(admin.ModelAdmin):  # Use PascalCase for class names
+    model = Content
+    list_display = ('topic', 'subtopic', 'title')  # Specify fields to display
+
+# Register models with their respective admin classes
+admin.site.register(Topic, TopicAdmin)
+admin.site.register(SubTopic, SubTopicAdmin)
+admin.site.register(Content, ContentAdmin)

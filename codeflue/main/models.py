@@ -1,10 +1,11 @@
 # models.py
 
 from django.db import models
+from autoslug import AutoSlugField
 
 class Language(models.Model):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
+    slug = AutoSlugField(populate_from='name',unique=True)
 
     def __str__(self):
         return self.name
@@ -13,7 +14,7 @@ class Language(models.Model):
 class Topic(models.Model):
     language = models.ForeignKey(Language, related_name="topics", on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
+    slug = AutoSlugField(populate_from='title',unique=True)
     order = models.IntegerField()
 
     class Meta:
