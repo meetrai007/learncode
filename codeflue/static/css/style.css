@@ -36,20 +36,28 @@ header nav a:hover {
 
 /* General Styles for the Sub Navbar */
 .sub-navbar {
+    white-space: nowrap;
+    /* Prevent items from wrapping */
+    overflow-x: auto;
+    /* Allow horizontal scrolling */
+    scrollbar-width: none;
+    /* Hide scrollbar in Firefox */
     display: flex;
     justify-content: flex-start;
     overflow-x: auto;
     padding: 10px;
-    background-color: #818181; /* Dark background for navbar */
+    background-color: #818181;
+    /* Dark background for navbar */
     margin-bottom: 20px;
-    white-space: nowrap; /* Prevent wrapping */
+    /* Prevent wrapping */
     border-bottom: 2px solid #ccc;
 }
 
 .language-item {
     display: inline-block;
     padding: 3px;
-    margin-right: 15px; /* Space between items */
+    margin-right: 15px;
+    /* Space between items */
 }
 
 .language-item a {
@@ -62,16 +70,32 @@ header nav a:hover {
     transition: background-color 0.3s, transform 0.3s;
 }
 
+.sub-navbar::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar in Chrome, Safari, and Edge */
+}
+
+/* Style for language items */
+.language-item {
+    display: inline-block;
+    /* Align items in a row */
+    margin-right: 10px;
+    /* Add spacing between items */
+}
+
 /* Hover effect for language items */
 .language-item a:hover {
-    background-color: #000000; /* Highlight on hover */
+    background-color: #000000;
+    /* Highlight on hover */
     color: white;
-    transform: scale(1.05); /* Slight zoom effect */
+    transform: scale(1.05);
+    /* Slight zoom effect */
 }
 
 /* Selected language effect */
 .language-item a.active {
-    background-color: #28a745; /* Green for active language */
+    background-color: #28a745;
+    /* Green for active language */
     color: white;
 }
 
@@ -80,6 +104,7 @@ header nav a:hover {
     .sub-navbar {
         padding: 10px 5px;
     }
+
     .language-item a {
         padding: 8px 12px;
     }
@@ -153,7 +178,8 @@ header nav a:hover {
 }
 
 /* Scroll buttons */
-.scroll-left, .scroll-right {
+.scroll-left,
+.scroll-right {
     background-color: #007BFF;
     color: white;
     border: none;
@@ -193,7 +219,8 @@ header nav a:hover {
         padding: 5px;
     }
 
-    .scroll-left, .scroll-right {
+    .scroll-left,
+    .scroll-right {
         display: block;
         padding: 8px;
         font-size: 1.2em;
