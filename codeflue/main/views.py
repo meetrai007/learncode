@@ -1,5 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Language, SubTopic, Content
+from django.shortcuts import render, get_object_or_404,redirect
+from .models import Language, SubTopic, Content,Topic
 from django.http import JsonResponse
 from .models import SubTopic
 
@@ -41,3 +41,48 @@ def get_content_for_subtopic(request, subtopic_id):
         return JsonResponse(response_data)
     else:
         return JsonResponse({'error': 'Content not found'}, status=404)
+
+def add_content(request):
+    if request.method == 'POST':
+        language_id = request.POST.get('language')
+        topic_id = request.POST.get('topic')
+        subtopic_id = request.POST.get('subtopic')
+
+        language = get_object_or_404(Language, id=language_id)
+        topic = get_object_or_404(Topic, id=topic_id)
+        subtopic = get_object_or_404(SubTopic, id=subtopic_id)
+
+        # Create the new content
+        content = Content(
+            language=language,
+            topic=topic,
+            subtopic=subtopic,
+            title=request.POST.get('title'),
+            slug=request.POST.get('slug'),
+            description=request.POST.get('description'),
+            english_content=request.POST.get('english_content'),
+            hinglish_content=request.POST.get('hinglish_content'),
+            og_title=request.POST.get('og_title'),
+            og_description=request.POST.get('og_description'),
+            og_image_url=request.POST.get('og_image_url'),
+            important_links=request.POST.get('important_links')
+        )
+        content.save()
+        return redirect('language_contents', language_slug=language.slug)
+
+    languages = Language.objects.all()
+    return render(request, 'main/add_content.html', {'languages': languages})
+
+from django.http import JsonResponse
+
+def get_topics(request, language_id):
+    language = get_object_or_404(Language, id=language_id)
+    topics = language.topics.all()
+    topic_data = [{'id': topic.id, 'title': topic.title} for topic in topics]
+    return JsonResponse({'topics': topic_data})
+
+def get_subtopics(request, topic_id):
+    topic = get_object_or_404(Topic, id=topic_id)
+    subtopics = topic.subtopics.all()
+    subtopic_data = [{'id': subtopic.id, 'title': subtopic.title} for subtopic in subtopics]
+    return JsonResponse({'subtopics': subtopic_data})

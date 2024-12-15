@@ -5,89 +5,273 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Content</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+    }
+    
+    /* Header Navbar */
+    header {
+        background-color: #333;
+        padding: 10px 20px;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    header .logo {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+    
+    header nav {
+        display: flex;
+        gap: 20px;
+    }
+    
+    header nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 1em;
+    }
+    
+    header nav a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Main Content Layout */
+    .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+        height: 200vh;
+    }
+    
+    .form-container {
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px;
+        margin: 0 20px;
+    }
+    
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        font-size: 1.1em;
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1em;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #f4f4f4;
+    }
+    
+    .form-group textarea {
+        height: 150px;
+    }
+    
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 12px 30px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    /* Responsive Layout */
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 20px;
+            width: 90%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .form-container {
+            padding: 15px;
+        }
+    
+        button {
+            font-size: 1.1em;
+        }
+    }
+    </style>
 </head>
 
 <body>
+    <!-- Header Navbar -->
+    <header>
+        <div class="logo">My Learning Site</div>
+        <nav>
+            <a href="/about">About</a>
+            <a href="/features">Features</a>
+            <a href="/contact">Contact</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
 
-    <h1>Add New Content</h1>
+    <!-- Main Content Layout -->
+    <div class="main-container">
+        <div class="form-container">
+            <h1>Add New Content</h1>
+            <form method="POST" action="{% url 'add_content' %}" enctype="multipart/form-data">
+                {% csrf_token %}
 
-    <form method="POST" action="{% url 'add_content' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        <div>
-            <label for="language">Language:</label>
-            <select id="language" name="language" required>
-                <option value="">-- Select Language --</option>
-                {% for language in languages %}
-                <option value="{{ language.id }}">{{ language.name }}</option>
-                {% endfor %}
-            </select>
+                <!-- Language Dropdown -->
+                <div class="form-group">
+                    <label for="language">Language:</label>
+                    <select id="language" name="language" required>
+                        <option value="">-- Select Language --</option>
+                        {% for language in languages %}
+                        <option value="{{ language.id }}">{{ language.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Topic Dropdown -->
+                <div class="form-group">
+                    <label for="topic">Topic:</label>
+                    <select id="topic" name="topic" required>
+                        <option value="">-- Select Topic --</option>
+                    </select>
+                </div>
+
+                <!-- Subtopic Dropdown -->
+                <div class="form-group">
+                    <label for="subtopic">Subtopic:</label>
+                    <select id="subtopic" name="subtopic" required>
+                        <option value="">-- Select Subtopic --</option>
+                    </select>
+                </div>
+
+                <!-- Content Fields -->
+                <div id="content-fields" style="display: block;">
+                    <div class="form-group">
+                        <label for="title">Content Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="slug">Slug:</label>
+                        <input type="text" id="slug" name="slug" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="english_content">English Content:</label>
+                        <textarea id="english_content" name="english_content" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hinglish_content">Hinglish Content:</label>
+                        <textarea id="hinglish_content" name="hinglish_content" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="og_title">OG Title:</label>
+                        <input type="text" id="og_title" name="og_title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="og_description">OG Description:</label>
+                        <textarea id="og_description" name="og_description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="og_image_url">OG Image URL:</label>
+                        <input type="url" id="og_image_url" name="og_image_url">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="important_links">Important Links:</label>
+                        <textarea id="important_links" name="important_links"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit">Add Content</button>
+                </div>
+            </form>
         </div>
+    </div>
 
-        <div>
-            <label for="topic">Topic:</label>
-            <select id="topic" name="topic" required>
-                <option value="">-- Select Topic --</option>
-            </select>
-        </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const languageSelect = document.getElementById('language');
+    const topicSelect = document.getElementById('topic');
+    const subtopicSelect = document.getElementById('subtopic');
+    const contentFields = document.getElementById('content-fields');
 
-        <div>
-            <label for="subtopic">SubTopic:</label>
-            <select id="subtopic" name="subtopic" required>
-                <option value="">-- Select SubTopic --</option>
-            </select>
-        </div>
+    languageSelect.addEventListener('change', function () {
+        const languageId = languageSelect.value;
+        if (languageId) {
+            fetch(`/get-topics/${languageId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    topicSelect.innerHTML = '<option value="">-- Select Topic --</option>';
+                    data.topics.forEach(topic => {
+                        const option = document.createElement('option');
+                        option.value = topic.id;
+                        option.textContent = topic.title;
+                        topicSelect.appendChild(option);
+                    });
+                });
+        }
+    });
 
-        <div id="content-fields" style="display: none;">
-            <div>
-                <label for="title">Content Title:</label>
-                <input type="text" id="title" name="title" required>
-            </div>
+    topicSelect.addEventListener('change', function () {
+        const topicId = topicSelect.value;
+        if (topicId) {
+            fetch(`/get-subtopics/${topicId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    subtopicSelect.innerHTML = '<option value="">-- Select SubTopic --</option>';
+                    data.subtopics.forEach(subtopic => {
+                        const option = document.createElement('option');
+                        option.value = subtopic.id;
+                        option.textContent = subtopic.title;
+                        subtopicSelect.appendChild(option);
+                    });
+                    contentFields.style.display = 'block'; // Show the content fields
+                });
+        }
+    });
+});
 
-            <div>
-                <label for="slug">Slug:</label>
-                <input type="text" id="slug" name="slug" required>
-            </div>
-
-            <div>
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
-            </div>
-
-            <div>
-                <label for="english_content">English Content:</label>
-                <textarea id="english_content" name="english_content" required></textarea>
-            </div>
-
-            <div>
-                <label for="hinglish_content">Hinglish Content:</label>
-                <textarea id="hinglish_content" name="hinglish_content" required></textarea>
-            </div>
-
-            <div>
-                <label for="og_title">OG Title:</label>
-                <input type="text" id="og_title" name="og_title" required>
-            </div>
-
-            <div>
-                <label for="og_description">OG Description:</label>
-                <textarea id="og_description" name="og_description" required></textarea>
-            </div>
-
-            <div>
-                <label for="og_image_url">OG Image URL:</label>
-                <input type="url" id="og_image_url" name="og_image_url">
-            </div>
-
-            <div>
-                <label for="important_links">Important Links:</label>
-                <textarea id="important_links" name="important_links"></textarea>
-            </div>
-
-            <button type="submit">Add Content</button>
-        </div>
-    </form>
-
+    </script>
 </body>
 
 </html>
