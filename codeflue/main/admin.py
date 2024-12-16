@@ -85,3 +85,4 @@ class ContentAdmin(admin.ModelAdmin):
     # Include JavaScript for dynamic dropdown functionality
     class Media:
         js = ('admin/js/jquery.init.js', '/static/js/admin_dynamic_fields.js')  # Add your custom JS file here
+    

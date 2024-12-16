@@ -26,6 +26,9 @@ def language_contents(request, language_slug):
         'content': content,
         'language_list': language_list
     })
+
+
+
 def get_content_for_subtopic(request, subtopic_id):
     subtopic = get_object_or_404(SubTopic, id=subtopic_id)
     content = subtopic.content.first()  # Get the first content related to this subtopic
@@ -87,8 +90,7 @@ def get_subtopics(request, topic_id):
     subtopic_data = [{'id': subtopic.id, 'title': subtopic.title} for subtopic in subtopics]
     return JsonResponse({'subtopics': subtopic_data})
 
-from django.http import JsonResponse
-from .models import Topic, SubTopic
+
 
 def fetch_topics(request):
     language_id = request.GET.get('language_id')
