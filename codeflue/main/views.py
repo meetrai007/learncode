@@ -1,6 +1,6 @@
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404,redirect # type: ignore
 from .models import Language, SubTopic, Content,Topic
-from django.http import JsonResponse
+from django.http import JsonResponse # type: ignore
 from .models import SubTopic
 
 def language_contents(request, language_slug):
@@ -76,7 +76,6 @@ def add_content(request):
     languages = Language.objects.all()
     return render(request, 'main/add_content.html', {'languages': languages})
 
-from django.http import JsonResponse
 
 def get_topics(request, language_id):
     language = get_object_or_404(Language, id=language_id)
