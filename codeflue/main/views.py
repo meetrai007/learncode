@@ -58,8 +58,8 @@ def add_content(request):
             topic=topic,
             subtopic=subtopic,
             title=request.POST.get('title'),
-            slug=request.POST.get('slug'),
             description=request.POST.get('description'),
+            keywords=request.POST.get('keywords'),
             english_content=request.POST.get('english_content'),
             hinglish_content=request.POST.get('hinglish_content'),
             og_title=request.POST.get('og_title'),
@@ -86,3 +86,28 @@ def get_subtopics(request, topic_id):
     subtopics = topic.subtopics.all()
     subtopic_data = [{'id': subtopic.id, 'title': subtopic.title} for subtopic in subtopics]
     return JsonResponse({'subtopics': subtopic_data})
+
+from django.http import JsonResponse
+from .models import Topic, SubTopic
+
+def fetch_topics(request):
+    language_id = request.GET.get('language_id')
+    if language_id:
+        # Filter topics based on language_id
+        topics = Topic.objects.filter(language_id=language_id).values('id', 'title')
+        results = [{'id': topic['id'], 'text': topic['title']} for topic in topics]
+    else:
+        results = []  # Return an empty list if no language_id is provided
+    
+    return JsonResponse({'results': results})
+
+def fetch_subtopics(request):
+    topic_id = request.GET.get('topic_id')
+    if topic_id:
+        # Filter subtopics based on topic_id
+        subtopics = SubTopic.objects.filter(topic_id=topic_id).values('id', 'title')
+        results = [{'id': subtopic['id'], 'text': subtopic['title']} for subtopic in subtopics]
+    else:
+        results = []  # Return an empty list if no topic_id is provided
+    
+    return JsonResponse({'results': results})
