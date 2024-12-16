@@ -2,21 +2,25 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #FFFFFF; /* Light background for theme */
+    color: #333333; /* Dark text for readability */
 }
 
 /* Header Navbar */
 header {
-    background-color: #FF5722; /* Orange theme */
+    background-color: #F8F9FA; /* Light gray for header */
     padding: 10px 20px;
-    color: white;
+    color: #333333;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid #DDDDDD;
 }
 
 header .logo {
     font-size: 1.5em;
     font-weight: bold;
+    color: #333333;
 }
 
 header nav {
@@ -25,38 +29,41 @@ header nav {
 }
 
 header nav a {
-    color: white;
+    color: #555555; /* Gray for links */
     text-decoration: none;
     font-size: 1em;
 }
 
 header nav a:hover {
     text-decoration: underline;
+    color: #000000; /* Black on hover */
 }
 
 /* General Styles for the Sub Navbar */
 .sub-navbar {
-    white-space: nowrap; /* Prevent items from wrapping */
-    overflow-x: auto; /* Allow horizontal scrolling */
-    scrollbar-width: none; /* Hide scrollbar in Firefox */
+    white-space: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
     display: flex;
     justify-content: flex-start;
     padding: 10px;
-    background-color: #FFCCBC; /* Light orange background */
-    margin-bottom: 20px; /* Prevent wrapping */
-    border-bottom: 2px solid #FF5722; /* Orange border */
+    background-color: #F1F1F1; /* Light gray background */
+    margin-bottom: 0;
+    border-bottom: 1px solid #CCCCCC;
+    z-index: 1000; /* Ensures it stays on top */
+    position: relative;
 }
 
 .language-item {
     display: inline-block;
     padding: 3px;
-    margin-right: 15px; /* Space between items */
+    margin-right: 15px;
 }
 
 .language-item a {
     text-decoration: none;
-    background-color: #FF5722; /* Orange buttons */
-    color: white;
+    background-color: #E0E0E0; /* Lighter gray for buttons */
+    color: #333333;
     padding: 8px 12px;
     font-size: 16px;
     border-radius: 5px;
@@ -64,20 +71,17 @@ header nav a:hover {
 }
 
 .sub-navbar::-webkit-scrollbar {
-    display: none; /* Hide scrollbar in Chrome, Safari, and Edge */
+    display: none;
 }
 
-/* Hover effect for language items */
 .language-item a:hover {
-    background-color: #D84315; /* Darker orange on hover */
-    color: white;
-    transform: scale(1.05); /* Slight zoom effect */
+    background-color: #CCCCCC;
+    transform: scale(1.05);
 }
 
-/* Selected language effect */
 .language-item a.active {
-    background-color: #4CAF50; /* Green for active language */
-    color: white;
+    background-color: #AAAAAA;
+    color: #FFFFFF;
 }
 
 /* Main Content Layout */
@@ -96,127 +100,89 @@ header nav a:hover {
     padding: 10px;
     width: 25%;
     position: fixed;
-    top: 50%;
+    top: 100px; /* Push below sub-navbar */
     left: 10px;
-    transform: translateY(-50%);
-    height: 80%;
+    transform: none;
+    height: calc(100% - 150px); /* Adjust height */
     max-width: 250px;
     overflow-y: auto;
+    background-color: #F9F9F9; /* Light background for slider */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #DDDDDD;
 }
 
 .slider-content {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    overflow-y: auto;
 }
 
 .topic-item {
-    background: #FFFFFF; /* White background */
+    background: #EAEAEA;
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, border 0.3s;
-    border: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 .topic-item:hover,
 .topic-item.active {
-    background-color: #FFF3E0; /* Light orange for active or hovered topic */
-    border-color: #FF5722; /* Orange border for active topic */
+    background-color: #DDDDDD;
+    border-color: #AAAAAA;
 }
 
-/* Subtopic styles with border for readability */
 .subtopic-item {
-    margin-left: 20px; /* Indent subtopics under topics */
+    margin-left: 20px;
     margin-top: 5px;
 }
 
 .subtopic-item a {
-    color: black;
+    color: #333333;
     text-decoration: none;
     font-size: 1em;
     display: block;
     padding: 10px;
-    border: 1px solid #FF5722; /* Add orange border */
+    border: 1px solid #CCCCCC;
     border-radius: 4px;
+    background-color: #F1F1F1;
     transition: background-color 0.3s, transform 0.3s;
-    background-color: #FFF3E0; /* Light orange background */
 }
 
 .subtopic-item a:hover {
-    background-color: #FFCCBC; /* Darker orange background on hover */
-    color: black;
+    background-color: #DDDDDD;
     transform: scale(1.05);
 }
 
 .subtopic-item a.active {
-    background-color: #FF5722; /* Orange background for active subtopic */
-    color: white;
-    border-color: #D84315; /* Darker orange border for active */
+    background-color: #BBBBBB;
+    color: #FFFFFF;
 }
 
 .content-container {
-    margin-left: 30%;
+    margin-left: 20%;
     padding: 20px;
     width: 65%;
     overflow: auto;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #DDDDDD;
 }
 
-/* Scroll buttons */
-.scroll-left,
-.scroll-right {
-    background-color: #FF5722; /* Orange buttons */
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50%;
-    position: fixed;
-    top: 50%;
-    z-index: 10;
-    transform: translateY(-50%);
-    display: none;
-}
-
-.scroll-left {
-    left: 10px;
-}
-
-.scroll-right {
-    left: 80px;
-}
-
+/* Responsive Fixes */
 @media (max-width: 768px) {
     .slider-container {
-        max-width: 200px;
+        position: relative;
+        width: 100%;
+        max-width: none;
+        top: 0;
+        height: auto;
+        transform: none;
     }
 
     .content-container {
         margin-left: 0;
         width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .slider-container {
-        max-width: 100%;
-        left: 0;
-        padding: 5px;
-    }
-
-    .scroll-left,
-    .scroll-right {
-        display: block;
-        padding: 8px;
-        font-size: 1.2em;
-    }
-
-    .scroll-left {
-        left: 5px;
-    }
-
-    .scroll-right {
-        left: 70px;
     }
 }
