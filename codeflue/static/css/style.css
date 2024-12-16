@@ -6,7 +6,7 @@ body {
 
 /* Header Navbar */
 header {
-    background-color: #333;
+    background-color: #FF5722; /* Orange theme */
     padding: 10px 20px;
     color: white;
     display: flex;
@@ -36,33 +36,26 @@ header nav a:hover {
 
 /* General Styles for the Sub Navbar */
 .sub-navbar {
-    white-space: nowrap;
-    /* Prevent items from wrapping */
-    overflow-x: auto;
-    /* Allow horizontal scrolling */
-    scrollbar-width: none;
-    /* Hide scrollbar in Firefox */
+    white-space: nowrap; /* Prevent items from wrapping */
+    overflow-x: auto; /* Allow horizontal scrolling */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
     display: flex;
     justify-content: flex-start;
-    overflow-x: auto;
     padding: 10px;
-    background-color: #818181;
-    /* Dark background for navbar */
-    margin-bottom: 20px;
-    /* Prevent wrapping */
-    border-bottom: 2px solid #ccc;
+    background-color: #FFCCBC; /* Light orange background */
+    margin-bottom: 20px; /* Prevent wrapping */
+    border-bottom: 2px solid #FF5722; /* Orange border */
 }
 
 .language-item {
     display: inline-block;
     padding: 3px;
-    margin-right: 15px;
-    /* Space between items */
+    margin-right: 15px; /* Space between items */
 }
 
 .language-item a {
     text-decoration: none;
-    background-color: #007BFF;
+    background-color: #FF5722; /* Orange buttons */
     color: white;
     padding: 8px 12px;
     font-size: 16px;
@@ -71,45 +64,21 @@ header nav a:hover {
 }
 
 .sub-navbar::-webkit-scrollbar {
-    display: none;
-    /* Hide scrollbar in Chrome, Safari, and Edge */
-}
-
-/* Style for language items */
-.language-item {
-    display: inline-block;
-    /* Align items in a row */
-    margin-right: 10px;
-    /* Add spacing between items */
+    display: none; /* Hide scrollbar in Chrome, Safari, and Edge */
 }
 
 /* Hover effect for language items */
 .language-item a:hover {
-    background-color: #000000;
-    /* Highlight on hover */
+    background-color: #D84315; /* Darker orange on hover */
     color: white;
-    transform: scale(1.05);
-    /* Slight zoom effect */
+    transform: scale(1.05); /* Slight zoom effect */
 }
 
 /* Selected language effect */
 .language-item a.active {
-    background-color: #28a745;
-    /* Green for active language */
+    background-color: #4CAF50; /* Green for active language */
     color: white;
 }
-
-/* Optional: Styling for when the subnavbar is very long (responsive behavior) */
-@media (max-width: 768px) {
-    .sub-navbar {
-        padding: 10px 5px;
-    }
-
-    .language-item a {
-        padding: 8px 12px;
-    }
-}
-
 
 /* Main Content Layout */
 .main-container {
@@ -143,16 +112,24 @@ header nav a:hover {
 }
 
 .topic-item {
-    background: #f4f4f4;
+    background: #FFFFFF; /* White background */
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, border 0.3s;
+    border: 2px solid transparent;
 }
 
-.active-subtopic {
-    background-color: #007BFF;
-    color: white;
+.topic-item:hover,
+.topic-item.active {
+    background-color: #FFF3E0; /* Light orange for active or hovered topic */
+    border-color: #FF5722; /* Orange border for active topic */
+}
+
+/* Subtopic styles with border for readability */
+.subtopic-item {
+    margin-left: 20px; /* Indent subtopics under topics */
+    margin-top: 5px;
 }
 
 .subtopic-item a {
@@ -160,14 +137,23 @@ header nav a:hover {
     text-decoration: none;
     font-size: 1em;
     display: block;
-    padding: 5px;
+    padding: 10px;
+    border: 1px solid #FF5722; /* Add orange border */
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s;
+    background-color: #FFF3E0; /* Light orange background */
 }
 
 .subtopic-item a:hover {
-    background-color: #007BFF;
-    color: rgb(0, 0, 0);
+    background-color: #FFCCBC; /* Darker orange background on hover */
+    color: black;
+    transform: scale(1.05);
+}
+
+.subtopic-item a.active {
+    background-color: #FF5722; /* Orange background for active subtopic */
+    color: white;
+    border-color: #D84315; /* Darker orange border for active */
 }
 
 .content-container {
@@ -180,7 +166,7 @@ header nav a:hover {
 /* Scroll buttons */
 .scroll-left,
 .scroll-right {
-    background-color: #007BFF;
+    background-color: #FF5722; /* Orange buttons */
     color: white;
     border: none;
     padding: 10px;
