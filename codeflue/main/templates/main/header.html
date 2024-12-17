@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Header Navbar -->
+     <header>
+       <div class="logo"><a href="/">My Learning Site</a></div>
+       <nav>
+           <a href="/about">About</a>
+           <a href="/features">Features</a>
+           <a href="/contact">Contact</a>
+           <a href="/login">Login</a>
+       </nav>
+    </header>
+    
+    <!-- Sub Navbar for Language Selector (Scrollable List) -->
+    <div class="sub-navbar">
+    {% for language in language_list %}
+    <div class="language-item">
+       <a href="/{{ language.slug }}/">{{ language.name }}</a>
+    </div>
+    {% endfor %}
+    </div>
+    
+    
+</body>
+</html> 
+ 
+ 

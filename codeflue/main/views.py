@@ -3,6 +3,11 @@ from .models import Language, SubTopic, Content,Topic
 from django.http import JsonResponse # type: ignore
 from .models import SubTopic
 
+def homepage(request):
+    language = Language.objects.all()
+    language_list = Language.objects.all()
+    return render(request, 'main/homepage.html', {'languages': language, 'language_list': language_list})
+
 def language_contents(request, language_slug):
     # Get the language object by slug
     language = get_object_or_404(Language, slug=language_slug)

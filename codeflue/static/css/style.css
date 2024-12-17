@@ -6,7 +6,7 @@ body {
     color: #333333; /* Dark text for readability */
 }
 
-/* Header Navbar */
+/* Sticky Navbar */
 header {
     background-color: #F8F9FA; /* Light gray for header */
     padding: 10px 20px;
@@ -15,6 +15,9 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #DDDDDD;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Ensures it stays above other content */
 }
 
 header .logo {
@@ -38,20 +41,30 @@ header nav a:hover {
     text-decoration: underline;
     color: #000000; /* Black on hover */
 }
+header div a {
+    color: #555555; /* Gray for links */
+    text-decoration: none;
+    font-size: 1em;
+}
 
-/* General Styles for the Sub Navbar */
+header div a:hover {
+    text-decoration: underline;
+    color: #000000; /* Black on hover */
+}
+
+/* Sticky Sub Navbar */
 .sub-navbar {
     white-space: nowrap;
     overflow-x: auto;
-    scrollbar-width: none;
     display: flex;
     justify-content: flex-start;
     padding: 10px;
     background-color: #F1F1F1; /* Light gray background */
     margin-bottom: 0;
     border-bottom: 1px solid #CCCCCC;
-    z-index: 1000; /* Ensures it stays on top */
-    position: relative;
+    position: sticky;
+    top: 50px; /* Sticks below the main header */
+    z-index: 999;
 }
 
 .language-item {
@@ -170,19 +183,86 @@ header nav a:hover {
     border: 1px solid #DDDDDD;
 }
 
-/* Responsive Fixes */
+/* Homepage Card Layout */
+.card {
+    background-color: #F9F9F9; /* Light gray background for consistency */
+    border: 1px solid #DDDDDD; /* Subtle border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    text-align: center; /* Center align content */
+    margin-bottom: 20px; /* Space between cards */
+    padding: 15px; /* Padding inside the card */
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #333333; /* Dark text for readability */
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #666666; /* Slightly lighter text */
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.card a.btn {
+    background-color: #555555; /* Darker gray for buttons */
+    color: #FFFFFF; /* White text */
+    padding: 10px 15px;
+    border-radius: 5px; /* Rounded buttons */
+    font-size: 1rem;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.card a.btn:hover {
+    background-color: #333333; /* Even darker on hover */
+    transform: scale(1.05); /* Slight pop-out effect */
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift card slightly on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+/* Footer Styles */
+.footer {
+    background-color: #333333; /* Dark background for contrast */
+    color: #FFFFFF; /* White text for readability */
+    padding: 20px 0; /* Top and bottom spacing */
+    text-align: center; /* Center align text */
+    font-size: 0.9rem; /* Smaller text size */
+    border-top: 1px solid #444444; /* Subtle top border for separation */
+}
+
+.footer p {
+    margin: 5px 0; /* Space between paragraphs */
+    color: #DDDDDD; /* Slightly lighter gray text */
+}
+
+.footer p a {
+    color: #AAAAAA; /* Theme gray for links */
+    text-decoration: none;
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth hover effects */
+}
+
+.footer p a:hover {
+    color: #FFFFFF; /* White on hover */
+    text-decoration: underline; /* Underline effect */
+}
+
+/* Responsive Adjustments for Footer */
 @media (max-width: 768px) {
-    .slider-container {
-        position: relative;
-        width: 100%;
-        max-width: none;
-        top: 0;
-        height: auto;
-        transform: none;
+    .footer {
+        padding: 15px 10px; /* Adjust spacing for smaller screens */
     }
 
-    .content-container {
-        margin-left: 0;
-        width: 100%;
+    .footer p {
+        font-size: 0.8rem; /* Smaller text for mobile */
     }
 }
