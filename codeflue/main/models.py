@@ -1,7 +1,7 @@
 # models.py
 
-from django.db import models
-from autoslug import AutoSlugField
+from django.db import models # type: ignore
+from autoslug import AutoSlugField # type: ignore
 
 class Language(models.Model):
     name = models.CharField(max_length=100)
